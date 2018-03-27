@@ -4,11 +4,18 @@ import java.util.List;
 import java.util.Map;
 
 import cn.sxt.vo.T_commodity;
+import cn.sxt.vo.T_commoditypicture;
+import cn.sxt.vo.T_picture;
 
 public interface T_commodityService {
 	//查询类型列表
 	List<T_commodity> selectManGategories(Map<String,Object> map);
 	
+	//查询商品以及路径
+	List<T_commoditypicture> selectAllCommoditytest(Map<String,Object> map);
+	//查图片
+	List<T_picture> selectAllCommoditypicture(Map<String,Object> map);
+		
 	//查询所有的商品
 	List<T_commodity> selectAllCommodity(Map<String,Object> map);
 	//查询所有的商品有价格范围
@@ -23,4 +30,9 @@ public interface T_commodityService {
 	//为了测试
 	int selectGategCount1(Map<String,Object> map);
 	int selectGategCount2(Map<String,Object> map);
+	
+	//根据id查询商品以及图片
+	List<T_commoditypicture> selectCommoditypBycId(Map<String,Object> map);
+	//修改数量cartlist
+	int updateTcartListnumber(Map<String,Object> map);
 }

@@ -54,9 +54,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="header-left">
 			 <div class="top-menu">
 				 <ul>
-				 <li><a href="indexShop.jsp">HOME</a></li>
-				 <li><a href="manGategories.do?commodityisman=女&currentPage=1">WOMAN</a></li>
-				 <li><a href="manGategories.do?commodityisman=男&currentPage=1">MAN</a></li>	
+				 <li><a href="indexShop.jsp">首页</a></li>
+				 <li><a href="manGategories.do?commodityisman=女&currentPage=1">女装</a></li>
+				 <li><a href="manGategories.do?commodityisman=男&currentPage=1">男装</a></li>	
 				 </ul>
 			 </div>
 		 </div>
@@ -71,10 +71,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 </div>		 
 			 <div class="signin">
 				  <div class="cart-sec">
-				  <a href="cart.html"><img href="cart.html" src="../images/cart.png" alt=""/>(0)</a></div>
+				  <a href="cart.html"><img href="cart.jsp" src="../images/cart.png" alt=""/>(0)</a></div>
 				  <ul>
-					 <li><a href="registration.jsp">REGISTRATION</a> <span>/<span> &nbsp;</li>
-					 <li><a href="login.jsp"> LOGIN</a></li>
+					 <li><a href="registration.jsp">注册</a> <span>/<span> &nbsp;</li>
+					 <li><a href="login.jsp"> 登录</a></li>
 				 </ul>			 
 			 </div>
 		 </div>
@@ -84,18 +84,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!---->
 <div class="registration-form">
 	 <div class="container">
-		 <h2>Registration</h2>
+		 <h2>注册</h2>
 		 <div class="col-md-6 reg-form">
 			 <div class="reg">
-				 <p>Welcome, please enter the folling to continue.</p>
-				 <p>If you have previously registered with us, <a href="#">click here</a></p>
+				 <p>欢迎光临，请输入以下继续.</p>
+				 <p>如果您以前在我们注册，<a href="#">点击这里</a></p>
 				 <form method="post" action="doRegistration.do">
 					 <ul>
-						 <li class="text-info">First Name: </li>
+						 <li class="text-info">名: </li>
 						 <li><input type="text" name="userNameFirst" value=""></li>
 					 </ul>
 					 <ul>
-						 <li class="text-info">Last Name: </li>
+						 <li class="text-info">姓: </li>
 						 <li><input type="text" name="userNameLast" value=""></li>
 					 </ul>				 
 					<ul>
@@ -103,39 +103,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						 <li><input type="text" name="userEmail" value=""></li>
 					 </ul>
 					 <ul>
-						 <li class="text-info">Password: </li>
+						 <li class="text-info">密码: </li>
 						 <li><input type="password" name="userPassword" value=""></li>
 					 </ul>
 					 <ul>
-						 <li class="text-info">Re-enter Password:</li>
+						 <li class="text-info">重新输入密码:</li>
 						 <li><input type="password" name="ruserPassword" value=""></li>
 					 </ul>
 					 <ul>
-						 <li class="text-info">Mobile Number:</li>
+						 <li class="text-info">电话号码:</li>
 						 <li><input type="text" name="userPhone" value=""></li>
 					 </ul>		
 					<p style="color: red;"> ${twoPasswordError} ${registerfail}	</p>
 					<p style="color: green;"> ${registerSuccess}</p>	
-					 <input type="submit" value="Register Now">
-					 <p class="click">By clicking this button, you agree to my modern style <a>Pollicy Terms and Conditions</a> to Use</p> 
+					 <input type="submit" value="现在注册">
 				 </form>
 			 </div>
 		 </div>
 		 <div class="col-md-6 reg-right">
-			 <h3>Completely Free Accouent</h3>
-			 <p>Pellentesque neque leo, dictum sit amet accumsan non, dignissim ac mauris. Mauris rhoncus, lectus tincidunt tempus aliquam, odio 
-			 libero tincidunt metus, sed euismod elit enim ut mi. Nulla porttitor et dolor sed condimentum. Praesent porttitor lorem dui, in pulvinar enim rhoncus vitae. Curabitur tincidunt, turpis ac lobortis hendrerit, ex elit vestibulum est, at faucibus erat ligula non neque.</p>
-			 <h3 class="lorem">Lorem ipsum dolor sit amet elit.</h3>
-			 <p>Tincidunt metus, sed euismod elit enim ut mi. Nulla porttitor et dolor sed condimentum. Praesent porttitor lorem dui, in pulvinar enim rhoncus vitae. Curabitur tincidunt, turpis ac lobortis hendrerit, ex elit vestibulum est, at faucibus erat ligula non neque.</p>
+			 
 		 </div>
 		 <div class="clearfix"></div>
 		 <div class="navigation">
 			 <ul>
-				 <li><a href="about.html">ABOUT</a></li>
+				 <li><a href="about.html">关于我们</a></li>
 				 <li><a href="woman.html">STOCKITS</a></li>
 				 <li><a href="contact.html">CONTACT</a></li>
 				 <li><a href="man.html">STORE</a></li>
-				 <li><a href="terms.html">TERMS & CONDITION</a></li>
+				 <li><a href="terms.html">条款 &条件</a></li>
 				 <li><a href="man.html">SHOW TO BUY</a></li>
 				 <li><a href="404.html">SHIPPING</a></li>
 				 <li><a href="404.html">RETURNS</a></li>

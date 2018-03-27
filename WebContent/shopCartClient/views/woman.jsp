@@ -38,6 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         list-style: none;
         }
 </style>
+
 </head>
 <body>
 <!---->
@@ -46,9 +47,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="header-left">
 			 <div class="top-menu">
 				 <ul>
-				  <li><a href="indexShop.jsp">HOME</a></li>
-				 <li  class="active"><a href="manGategories.do?commodityisman=女&currentPage=1">WOMAN</a></li>
-				 <li><a href="manGategories.do?commodityisman=男&currentPage=1">MAN</a></li>	
+				 <li><a href="indexShop.jsp">首页</a></li>
+				 <li  class="active"><a href="manGategories.do?commodityisman=女&currentPage=1">女装</a></li>
+				 <li><a href="manGategories.do?commodityisman=男&currentPage=1">男装</a></li>		 	 
 				 </ul>
 			 </div>
 		 </div>
@@ -57,16 +58,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 </div>
 		 <div class="header-right">
 			 <div class="currency">			 
-				  <a href="#"><i class="c1"></i></a>
+				 <a href="#"><i class="c1"></i></a>
 				 <a href="#" style="color: #fff;font-size: 13px;font-weight: 600;text-decoration: none;">${tuserlist.userName}</a>	
 				 <a href="#"><i class="c4"></i></a>
 			 </div>		 
 			 <div class="signin">
 				  <div class="cart-sec">
-				  <a href="cart.html"><img href="cart.html" src="../images/cart.png" alt=""/>(0)</a></div>
+				  <a href="cart.html"><img href="cart.jsp" src="../images/cart.png" alt=""/>(0)</a></div>
 				  <ul>
-					 <li><a href="registration.jsp">REGISTRATION</a> <span>/<span> &nbsp;</li>
-					 <li><a href="login.jsp"> LOGIN</a></li>
+					 <li><a href="registration.jsp">注册</a> <span>/<span> &nbsp;</li>
+					 <li><a href="login.jsp"> 登录</a></li>
 				 </ul>			 
 			 </div>
 		 </div>
@@ -79,15 +80,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="col-md-9 fashions">
 			 <div class="title">
 				 <h3>TOPS - TITLE.${gategoriesN}</h3>
-			 </div>	
-			 <div class="fashion-section">
+			 </div>
+			 <div class="fashion-section" style="min-height:400px;">
 				 <div class="fashion-grid1">
-				 <c:forEach items="${commodityList}" var="commodity">
+				  <%-- <c:forEach items="${commodityList}" var="commodity">
 						 <div class="col-md-4 fashion-grid" style="margin-top: 2em;margin-bottom: 2em;">
 							 <a href="single.html"><img src="../images/${commodity.commodityURL}.jpg" alt=""/>
 								 <div class="product">
-									 <h3> ${commodity.commodityName}</h3>
+									 <h3> ${commodity.commodityName} ${commodity.commodityId}</h3>
 									 <p><span></span> ${commodity.commodityPrice} &euro;</p>								 
+								 </div>							 
+							 </a>
+							 <div class="fashion-view"><span></span>
+									<div class="clearfix"></div>
+									 <h4><a href="toSinglejsp.do?commodityId=${commodity.commodityId}&commodityPrice=${commodity.commodityPrice}&commodityName=${commodity.commodityName}&commodityURL=${commodity.commodityURL}">Quick View</a></h4>
+							 </div>
+						 </div>
+					 </c:forEach> --%>
+					<c:forEach items="${commoditypictureList}" var="commoditypicture">
+						 <div class="col-md-4 fashion-grid" style="margin-top: 2em;margin-bottom: 2em;" >
+							 <a href="single.html"><img width="260px" height="300px" src="../file/${commoditypicture.cpURL}" alt="没有图片"/>
+								 <div class="product">
+									 <h3> ${commoditypicture.commodityName} ${commoditypicture.commodityId} </h3>
+									 <p><span></span> ${commoditypicture.commodityPrice} &euro;</p>								 
 								 </div>							 
 							 </a>
 							 <div class="fashion-view"><span></span>
@@ -97,41 +112,57 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						 </div>
 					 </c:forEach>
 					 <div class="clearfix"></div>
-					 <div >
+<%-- 					 <div style="padding-bottom: 60px;">
 					 <ul class="am-pagination am-fr">
 							<li class="am-disabled" style="float:right;margin-left: 20px;">当前是第 ${pageNumberX } 页</li>
-							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=1&low=${low}&high=${high}&gategoriesName=${manGategoriesList.t_gategories.gategoriesName}">首页</a></li>
-							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageNumberX-1 }&low=${low}&high=${high}&gategoriesName=${manGategoriesList.t_gategories.gategoriesName}">上一页</a></li>
-							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageNumberX+1 }&low=${low}&high=${high}&gategoriesName=${manGategoriesList.t_gategories.gategoriesName}">下一页</a></li>
-							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageAll}&low=${low}&high=${high}&gategoriesName=${manGategoriesList.t_gategories.gategoriesName}">尾页</a></li>
+							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=1&low=${low}&high=${high}">首页</a></li>
+							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageNumberX-1 }&low=${low}&high=${high}">上一页</a></li>
+							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageNumberX+1 }&low=${low}&high=${high}">下一页</a></li>
+							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageAll}&low=${low}&high=${high}">尾页</a></li>
+							<li style="float:right;margin-left: 20px;">总页数： ${pageAll} 页</li> 
+							<li class="am-disabled" style="float:right;margin-left: 20px;">当前是第 ${pageNumberX } 页</li>
+							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=1&low=${low}&high=${high}&gategoriesName=${gategoriesN}">首页</a></li>
+							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageNumberX-1 }&low=${low}&high=${high}&gategoriesName=${gategoriesN}">上一页</a></li>
+							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageNumberX+1 }&low=${low}&high=${high}&gategoriesName=${gategoriesN}">下一页</a></li>
+							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageAll}&low=${low}&high=${high}&gategoriesName=${gategoriesN}">尾页</a></li>
 							<li style="float:right;margin-left: 20px;">总页数： ${pageAll} 页</li>
 						</ul>
-					</div>
+					</div> --%>
 					
 				 </div>
 			 </div>
+			 <div style=" padding-left: 50%;">
+				<ul class="pagination pagination-sm">
+				    <li><a href="#">当前是第 ${pageNumberX } 页</a></li>
+				    <li><a href="manGategories.do?commodityisman=${commodityisman}&currentPage=1&low=${low}&high=${high}&gategoriesName=${gategoriesN}">首页</a></li>
+				    <li><a href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageNumberX-1 }&low=${low}&high=${high}&gategoriesName=${gategoriesN}">上一页</a></li>
+				    <li><a href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageNumberX+1 }&low=${low}&high=${high}&gategoriesName=${gategoriesN}">下一页</a></li>
+				    <li><a href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageAll}&low=${low}&high=${high}&gategoriesName=${gategoriesN}">尾页</a></li>
+				    <li><a href="#">总页数： ${pageAll} 页</a></li>
+				 </ul>
+			</div>
 		 </div>
 		 <div class="col-md-3 side-bar">
 			  <div class="categories">
-					<h3>CATEGORIES</h3>
+					<h3>女士商品类别</h3>
 				  <ul>
 				 	 <c:forEach items="${sessionScope.ManGategoriesList}" var="manGategoriesList">				       
-				        <li><a href="manGategories.do?commodityisman=${commodityisman}&currentPage=1&low=${low}&high=${high}&gategoriesName=${manGategoriesList.t_gategories.gategoriesName}">${manGategoriesList.t_gategories.gategoriesName}</a></li>				      				          
+				        <li><a href="manGategories.do?commodityisman=${commodityisman}&currentPage=1&gategoriesName=${manGategoriesList.t_gategories.gategoriesName}&gategoriesId=${manGategoriesList.t_gategories.gategoriesId}">${manGategoriesList.t_gategories.gategoriesName}</a></li>				      				          
 				     </c:forEach>
 				  </ul>
 			  </div>
 			  <div class="sales">
-				 <h3>SALE</h3>
+				 <h3>快速搜索</h3>
 				 <div class="pricing">
-					 <h4>Price range</h4>
-					 <form action="manGategories.do?commodityisman=女&currentPage=1"  method="post">
-					 	<input type="text" placeholder="price from" required name="low" value="${low}"/>
-					 	<input type="text" placeholder="price to" required name="high" value="${high}"/>
-					 	<input type="submit" value="go select->" style="height: 30px;width: 83%;"/>
+					 <h4>按价格搜索</h4>
+					 <form action="manGategories.do?commodityisman=女&currentPage=1&gategoriesName=${gategoriesN}"  method="post">
+					 	<input type="text" placeholder="最低价" required name="low" value="${low}"/>
+					 	<input type="text" placeholder="最高价" required name="high" value="${high}"/>
+					 	<input type="submit" value="搜索" style="height: 30px;width: 83%;"/>
 					 </form>
 					 <div class="clearfix"></div>
 				 </div>
-				 <div class="size">
+				<!--  <div class="size">
 					 <h4>Size</h4>
 					 <ul>
 						 <li><a href="#">XS</a></li>
@@ -140,7 +171,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						 <li><a href="#">L</a></li>
 						 <li><a href="#">XL</a></li>
 					 </ul>
-				 </div>
+				 </div> -->
 			  </div>
 		 </div>
 		 <div class="clearfix"></div>

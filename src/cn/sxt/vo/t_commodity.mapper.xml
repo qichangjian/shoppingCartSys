@@ -22,6 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   			<if test="high != null">
   				and commodityPrice &lt;= #{high}
   			</if>
+  			<if test="gategoriesId != null">
+  				and gategoriesId = #{gategoriesId}
+  			</if>
 		</where>
 	</select>
 	<!--   select * from t_commodity where rowid in(select rid from (select rownum rn,rid from(select rowid rid,commodityId from t_commodity) where rownum<=1) where rn>0)  -->
@@ -38,6 +41,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	select * from (select t.*,rownum rownu from t_commodity t 
         where rownum&lt;=#{pageSize} and commodityisman = #{commodityisman})tt
         where tt.rownu>#{startIndex}
+	</select>
+	
+	<select id="selectAllCommoditytest" resultType="T_commoditypicture" parameterType="Map">
+        select * from (select cp.cpId,cp.cpurl,cp.cpposition,t.*,rownum rownu from t_commodity t, t_commoditypicture cp
+        where rownum&lt;=#{pageSize} and commodityisman = #{commodityisman} and cp.cpposition ='正面照' and cp.commodityid = t.commodityid
+       	    <if test="low != null">
+  				and commodityPrice > #{low}
+  			</if>
+  			<if test="high != null">
+  				and commodityPrice &lt;= #{high}
+  			</if>
+  			<if test="gategoriesId != null">
+  				and gategoriesId = #{gategoriesId}
+  			</if>
+        )tt
+        where tt.rownu>#{startIndex}
+	</select>
+	
+	<select id="selectCommoditypBycId" resultType="T_commoditypicture" parameterType="Map">
+		<!-- select cp.cpId,cp.cpurl,cp.cpposition,t.*  from t_commodity t, t_commoditypicture cp
+       	 where cp.cpposition ='正面照' and  cp.commodityid = t.commodityid and cp.commodityid =  #{commodityId} -->
+       	 select cp.cpId,cp.cpurl,cp.cpposition,t.commodityid,t.commodityname,t.commodityprice,t.commodityisman,t.commodityisshelves,cl.commoditysize,cl.cartListnumber,cl.cartListId  from t_commodity t, t_commoditypicture cp ,t_cartList cl
+       	 where cp.cpposition ='正面照' and  cp.commodityid = t.commodityid and cl.commodityid = cp.commodityid and cp.commodityid = #{commodityId}
+	</select>
+	
+	<select id="selectAllCommoditypicture" resultType="T_picture" parameterType="Map">
+        select * from T_commoditypicture where commodityId = #{commodityId}
 	</select>
 	
 	<select id="selectAllCommodity2" resultType="T_commodity" parameterType="Map">

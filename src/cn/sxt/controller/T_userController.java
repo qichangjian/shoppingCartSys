@@ -92,19 +92,24 @@ public class T_userController {
 		}
 	}
 	
-	@RequestMapping("/shopCartClient/views/toSinglejsp")
+	/*@RequestMapping("/shopCartClient/views/toSinglejsp")
 	public ModelAndView toSinglejsp(HttpServletRequest request,HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		String commodityId = request.getParameter("commodityId");
 		String commodityPrice = request.getParameter("commodityPrice");
 		String commodityName = request.getParameter("commodityName");
-		String commodityURL = request.getParameter("commodityURL");
+		String cpURL = request.getParameter("cpURL");
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("commodityId", commodityId);
+		
+		
 		mv.addObject("commodityId",commodityId);
 		mv.addObject("commodityPrice",commodityPrice);
 		mv.addObject("commodityName",commodityName);
-		mv.addObject("commodityURL",commodityURL);
+		mv.addObject("cpURL",cpURL);
 		mv.setViewName("/shopCartClient/views/single.jsp");
 		return mv;
-	}
+	}*/
 	
 }

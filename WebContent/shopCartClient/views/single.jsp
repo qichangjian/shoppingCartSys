@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -28,9 +29,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="header-left">
 			 <div class="top-menu">
 				 <ul>
-				 <li><a href="indexShop.jsp">HOME</a></li>
-				 <li><a href="manGategories.do?commodityisman=女&currentPage=1">WOMAN</a></li>
-				 <li class="active"><a href="manGategories.do?commodityisman=男&currentPage=1">MAN</a></li>			 
+				 <li><a href="indexShop.jsp">首页</a></li>
+				 <li><a href="manGategories.do?commodityisman=女&currentPage=1">女装</a></li>
+				 <li class="active"><a href="manGategories.do?commodityisman=男&currentPage=1">男装</a></li>			 
 				 </ul>
 			 </div>
 		 </div>
@@ -45,10 +46,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 </div>		 
 			 <div class="signin">
 				  <div class="cart-sec">
-				  <a href="cart.html"><img href="cart.html" src="../images/cart.png" alt=""/>(0)</a></div>
+				  <a href="cart.html"><img href="cart.jsp" src="../images/cart.png" alt=""/>(0)</a></div>
 				  <ul>
-					 <li><a href="registration.jsp">REGISTRATION</a> <span>/<span> &nbsp;</li>
-					 <li><a href="login.jsp"> LOGIN</a></li>
+					 <li><a href="registration.jsp">注册</a> <span>/<span> &nbsp;</li>
+					 <li><a href="login.jsp"> 登录</a></li>
 				 </ul>			 
 			 </div>
 		 </div>
@@ -56,7 +57,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 </div>
 </div>
 <!---->
- <script>
+<script>
     // You can also use "$(window).load(function() {"
     $(function () {
       // Slideshow 1
@@ -72,26 +73,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="single-section">
 	 <div class="col-md-8 fashions2">			 
 			<div class="slider2">
-				<ul class="rslides rslider" id="slider2">				  
-				  <li><img src="../images/${commodityURL}.jpg" alt=""></li>
-				  <li><img src="../images/${commodityURL}1.jpg" alt=""></li>
-				  <li><img src="../images/${commodityURL}2.jpg" alt=""></li>
-				  <li><img src="../images/${commodityURL}3.jpg" alt=""></li>
+				<ul class="rslides rslider" id="slider2">					
+					<c:forEach items="${pictureList}" var="pictureLists">			  
+					  <li><img src="../file/${pictureLists.cpURL}" alt="${pictureLists.cpPosition}"></li>
+				    </c:forEach>
 				</ul>
 		   </div>
 	  </div> 
 	<div class="col-md-4 side-bar2">
 		  <div class="product-price">
 			   <div class="product-name">
-				 <h2>PRODUCT NAME</h2>
+				 <h2>产品名称</h2>
 					<p>${commodityName}</p>
 					<span>${commodityPrice}&euro;</span>
 					<div class="clearfix"></div>
-					<h4>AVAILABLE</h4>
+					<h4>有货</h4>
 			  </div>	
 			 <div class="product-id">
-				 <h4>SELECT YOUR SIZE</h4>
-				  <div class="size select-size">					
+				 <h4>选择你的尺寸</h4>
+				  <!-- <div class="size select-size">					
 					 <ul>
 						 <li><a href="#">XS</a></li>
 						 <li><a href="#">S</a></li>
@@ -101,7 +101,29 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					 </ul>
 				 </div>
 				 <p>PRODUCT ID : <a href="#">D35TSJ69NU</a></p>
-				 <a class="add" href="cart.html">ADD TO BAG</a>
+				 <a class="add" href="cart.html">ADD TO BAG</a> -->
+				 <form action="addCart.do?commodityPrice=${commodityPrice}&commodityId=${commodityId}&userName=${tuserlist.userName}&userId=${tuserlist.userId}" method="post">
+					 <div class="size select-size">		
+						 <center>	
+							 <ul>
+								 <li>XS<input type="radio" name="commoditySize" value="XS"/></li>
+								 <li>S<input type="radio" name="commoditySize" value="S"/></li>
+								 <li>M<input type="radio" name="commoditySize" value="M"/></li>
+								 <li>L<input type="radio" name="commoditySize" value="L"/></li>
+								 <li>XL<input type="radio" checked="checked" name="commoditySize" value="XL"/></li>
+							 </ul>
+						 </center>		
+					 </div>
+					 <p>产品ID : <a href="#">${commodityId}</a></p>
+					<!--  <a class="add" href="addTocart.do"> <button type="submit" class="add" style="background:none;border:none;"> -->
+				 		 <button type="submit" style="color: #fff;background-color:#1a1818;text-decoration: none;padding: 0.7em;display: block;margin-top: 6em;text-align: center; width:90%;">
+						 加入购物车
+						 </button>
+					<!--  </a> -->
+					
+			
+				 </form>
+				 <p>${resultTip}</p>
 			 </div>
 		 </div>
       </div>

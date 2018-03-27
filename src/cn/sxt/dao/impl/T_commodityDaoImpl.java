@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import cn.sxt.dao.T_commodityDao;
 import cn.sxt.vo.T_commodity;
+import cn.sxt.vo.T_commoditypicture;
+import cn.sxt.vo.T_picture;
 
 @Repository("t_commodityDao")
 public class T_commodityDaoImpl extends SqlSessionDaoSupport implements T_commodityDao{
@@ -25,10 +27,17 @@ public class T_commodityDaoImpl extends SqlSessionDaoSupport implements T_commod
 	}
 
 	@Override
-	public List<T_commodity> selectAllCommodity(Map<String, Object> map) {
-		
+	public List<T_commodity> selectAllCommodity(Map<String, Object> map) {		
 		return getSqlSession().selectList("cn.sxt.vo.t_commodity.mapper.selectAllCommodity",map);
 	}
+	
+	@Override
+	public List<T_commoditypicture> selectAllCommoditytest(Map<String, Object> map) {
+		return getSqlSession().selectList("cn.sxt.vo.t_commodity.mapper.selectAllCommoditytest",map);
+	}
+	
+	
+	
 	@Override
 	public List<T_commodity> selectAllCommodity2(Map<String, Object> map) {
 		return getSqlSession().selectList("cn.sxt.vo.t_commodity.mapper.selectAllCommodity2",map);
@@ -57,4 +66,22 @@ public class T_commodityDaoImpl extends SqlSessionDaoSupport implements T_commod
 		System.out.println("2select gate Dao:"+map.get("commodityisman"));
 		return getSqlSession().selectOne("cn.sxt.vo.t_commodity.mapper.selectGategCount2", map);
 	}
+
+	@Override
+	public List<T_picture> selectAllCommoditypicture(Map<String, Object> map) {
+		return getSqlSession().selectList("cn.sxt.vo.t_commodity.mapper.selectAllCommoditypicture", map);
+	}
+
+	@Override
+	public List<T_commoditypicture> selectCommoditypBycId(Map<String, Object> map) {
+		System.out.println("dao÷–selectCommoditypBycId£∫"+map.get("commodityId"));
+		return getSqlSession().selectList("cn.sxt.vo.t_commodity.mapper.selectCommoditypBycId", map);
+	}
+
+	@Override
+	public int updateTcartListnumber(Map<String, Object> map) {
+		return getSqlSession().update("cn.sxt.vo.t_cartList.mapper.updateTcartListnumber", map);
+	}
+
+
 }

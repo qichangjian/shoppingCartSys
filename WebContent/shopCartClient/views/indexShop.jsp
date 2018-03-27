@@ -23,10 +23,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link type="text/css" rel="stylesheet" href="../css/easy-responsive-tabs.css" />
 <script src="../js/easyResponsiveTabs.js" type="text/javascript"></script>
 
-<!--     <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- -->
+<!-- 轮播专用 -->
+<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+      width: 100%;
+      height: 100%;
+  }
+  </style>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#horizontalTab').easyResponsiveTabs({
@@ -81,12 +88,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="header-right">
 			 <div class="currency">			 
 				 <a href="#"><i class="c1"></i></a>
-				 <a href="#" style="color: #fff;font-size: 13px;font-weight: 600;text-decoration: none;">${tuserlist.userName}</a>	
+				 <a href="#" style="color: #fff;font-size: 13px;font-weight: 600;text-decoration: none;">${tuserlist.userName}${tuserlist.userId }</a>	
 				 <a href="#"><i class="c4"></i></a>
 			 </div>		 
 			 <div class="signin">
 				  <div class="cart-sec">
-				  <a href="cart.html"><img href="cart.html" src="../images/cart.png" alt=""/>(0)</a></div>
+				  <a href="cart.do?userName=${tuserlist.userName}&userId=${tuserlist.userId }"><img href="cart.do?userName=${tuserlist.userName}&userId=${tuserlist.userId }" src="../images/cart.png" alt=""/>(0)</a></div>
 				  <ul>
 					 <li><a href="registration.jsp">注册</a> <span>/<span> &nbsp;</li>
 					 <li><a href="login.jsp"> 登陆</a></li>
@@ -110,14 +117,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 
- <div class="slider">
+<!--  <div class="slider">
 	  <div class="callbacks_container">
 	     <ul class="rslides" id="slider">
 	         <li>
 				  <img src="../images/bnr.jpg" alt="">
 				  <div class="banner-info">
 				  <h3>FASHIONS</h3>
-				  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. consectetur adipiscing elit. consectetur adipiscing elit.</p>
+				  <p>办公窒的年轻人，你的时髦装扮应朝那个方向走? </p>
 				  </div>
 	         </li>
 	         <li>
@@ -136,59 +143,64 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	         </li> 
 	      </ul>
 	  </div>
-  </div> 
+  </div>  -->
 
-<!-- 	  <div id="myCarousel" class="carousel slide">
-	轮播（Carousel）指标
-	<ol class="carousel-indicators">
-		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-		<li data-target="#myCarousel" data-slide-to="1"></li>
-		<li data-target="#myCarousel" data-slide-to="2"></li>
-	</ol>   
-	轮播（Carousel）项目
-	<div class="carousel-inner">
-		<div class="item active">
-			<img src="../images/bnr.jpg" alt="First slide">
-			<div class="banner-info">
-				  <h3>FASHIONS</h3>
-				  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. consectetur adipiscing elit. consectetur adipiscing elit.</p>
-		    </div>
-		</div>
-		<div class="item">
-			<img src="../images/bnr3.jpg" alt="Second slide">
-			<div class="banner-info">
-	        	 <h3>MODELING</h3>
-	          	 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. consectetur adipiscing elit. consectetur adipiscing elit.</p>
-			</div>
-		</div>
-		<div class="item">
-			<img src="../images/bnr3.jpg" alt="Third slide">
-			<div class="banner-info">
-	        	 <h3>FASHIONS</h3>
-	          	 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. consectetur adipiscing elit. consectetur adipiscing elit.</p>
-			</div>
-		</div>
-	</div>
-	轮播（Carousel）导航
-	<a class="carousel-control left" href="#myCarousel" 
-	   data-slide="prev">&lsaquo;</a>
-	<a class="carousel-control right" href="#myCarousel" 
-	   data-slide="next">&rsaquo;</a>
-</div>  -->
-	  
-<!---->
-<div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >手机网站模板</a></div>
+<div class="carousel-inner">
+        <section id="carousel">
+                <div id="myCarousel" class="carousel slide">
+                    <ol class="carousel-indicators">
+                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img src="../images/bnr.jpg" alt="">
+                            <div class="banner-info">
+                                <h3>FASHIONS</h3>
+				 				 <p>办公窒的年轻人，你的时髦装扮应朝那个方向走? </p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="../images/bnr2.jpg" alt="">
+                            <div class="banner-info">
+	        					 <h3>MODELING</h3>
+	          					 <p>只有如此美丽的衣服，才能配上如此美丽的你.</p>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <img src="../images/bnr3.jpg" alt="">
+                            <div class="banner-info">
+	        	 				<h3>YOUTH</h3>
+	          					 <p>轻奢有度，青春无限。.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+                </div>
+        </section>
+</div>
+
+<!-- 测试滚动条 -->
 <div class="tab-section">
 	 <div class="wrap">
 		 <div id="horizontalTab">
-			   <ul class="resp-tabs-list">
-					<li><a href="#">FEATURED</a></li>
-					<li class="active"><a href="#">JUST ARRIVED</a></li>
-					<li><a href="#">SALE</a></li>
-					<div class="clearfix"></div>				
-			   </ul>
-			   <div class="resp-tabs-container">
-				 <!---tab1----->
+		 
+<ul id="myTab" class="nav nav-tabs resp-tabs-list">
+   <li class="active">
+  		 <a href="#home" data-toggle="tab">男装</a>
+   </li>
+   <li>
+   		<a href="#ios" data-toggle="tab">女装</a>
+   	</li>
+   <li>
+      <a href="#jmeter" data-toggle="tab">热卖</a>
+   </li>
+</ul>
+<div id="myTabContent" class="tab-content">
+   <div class="tab-pane fade in active" id="home">
+      <!---tab1----->
 				 <div>
 					 <div class="course_demo1">
 							 <ul id="flexiselDemo1">	
@@ -279,7 +291,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<script type="text/javascript" src="../js/jquery.flexisel.js"></script>
 				 </div>
 				 <!---//tab1----->
-				 <!---tab2----->
+   </div>
+   <div class="tab-pane fade" id="ios">
+      <!---tab2----->
 				 <div>
 					 <div class="course_demo1">
 							 <ul id="flexiselDemo2">	
@@ -370,7 +384,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<script type="text/javascript" src="../js/jquery.flexisel.js"></script>
 				 </div>
 				 <!---//tab2----->
-				 <!---tab3----->
+   </div>
+   <div class="tab-pane fade" id="jmeter">
+       <!---tab3----->
 				 <div>
 					 <div class="course_demo1">
 							 <ul id="flexiselDemo3">	
@@ -461,17 +477,313 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<script type="text/javascript" src="../js/jquery.flexisel.js"></script>
 				 </div>
 				 <!---//tab3----->
+   </div>
+</div>
+
+
+</div>
+</div>
+<script>
+   $(function () {
+      $('#myTab li:eq(1) a').tab('show');
+   });
+</script>
+
+<!--下方滚动条-->
+<!-- <div class="tab-section">
+	 <div class="wrap">
+		 <div id="horizontalTab">
+			   <ul class="resp-tabs-list">
+					<li><a href="#">FEATURED</a></li>
+					<li class="active"><a href="#">JUST ARRIVED</a></li>
+					<li><a href="#">SALE</a></li>
+					<div class="clearfix"></div>				
+			   </ul>
+			   <div class="resp-tabs-container">
+				 -tab1---
+				 <div>
+					 <div class="course_demo1">
+							 <ul id="flexiselDemo1">	
+								 <li class="g1">						
+									 <img src="../images/c1.jpg" alt="" />		
+										<a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c2.jpg" alt="" />
+									 <a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c3.jpg" alt="" />					
+									 <a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c4.jpg" alt="" />					
+									 <a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c1.jpg" alt="" />					
+									 <a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c3.jpg" alt="" />					
+									 <a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+							 </ul>
+						 </div>
+						  <link rel="stylesheet" href="../css/flexslider.css" type="text/css" media="screen" />
+							<script type="text/javascript">
+						 $(window).load(function() {
+							$("#flexiselDemo1").flexisel({
+								visibleItems: 4,
+								animationSpeed: 1000,
+								autoPlay: true,
+								autoPlaySpeed: 3000,    		
+								pauseOnHover: true,
+								enableResponsiveBreakpoints: true,
+								responsiveBreakpoints: { 
+									portrait: { 
+										changePoint:480,
+										visibleItems: 1
+									}, 
+									landscape: { 
+										changePoint:640,
+										visibleItems: 2
+									},
+									tablet: { 
+										changePoint:768,
+										visibleItems: 3
+									}
+								}
+							});
+							
+						 });
+						  </script>
+						<script type="text/javascript" src="../js/jquery.flexisel.js"></script>
+				 </div>
+				 -//tab1---
+				 -tab2---
+				 <div>
+					 <div class="course_demo1">
+							 <ul id="flexiselDemo2">	
+								 <li class="g1">						
+									 <img src="../images/c4.jpg" alt="" />		
+										<a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c3.jpg" alt="" />
+									 <a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c2.jpg" alt="" />					
+									 <a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c1.jpg" alt="" />					
+									 <a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c4.jpg" alt="" />					
+									 <a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c1.jpg" alt="" />					
+									<a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+							 </ul>
+						 </div>
+						  <link rel="stylesheet" href="../css/flexslider.css" type="text/css" media="screen" />
+							<script type="text/javascript">
+						 $(window).load(function() {
+							$("#flexiselDemo2").flexisel({
+								visibleItems: 4,
+								animationSpeed: 1000,
+								autoPlay: true,
+								autoPlaySpeed: 3000,    		
+								pauseOnHover: true,
+								enableResponsiveBreakpoints: true,
+								responsiveBreakpoints: { 
+									portrait: { 
+										changePoint:480,
+										visibleItems: 1
+									}, 
+									landscape: { 
+										changePoint:640,
+										visibleItems: 2
+									},
+									tablet: { 
+										changePoint:768,
+										visibleItems: 3
+									}
+								}
+							});
+							
+						 });
+						  </script>
+						<script type="text/javascript" src="../js/jquery.flexisel.js"></script>
+				 </div>
+				 -//tab2---
+				 -tab3---
+				 <div>
+					 <div class="course_demo1">
+							 <ul id="flexiselDemo3">	
+								 <li class="g1">						
+									 <img src="../images/c1.jpg" alt="" />		
+										<a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c2.jpg" alt="" />
+									 <a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c3.jpg" alt="" />					
+									 <a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c4.jpg" alt="" />					
+									 <a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c1.jpg" alt="" />					
+									 <a href="single.html"><div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+								 <li class="g1">						
+									 <img src="../images/c3.jpg" alt="" />					
+									<a href="single.html"> <div class="caption">
+										<span></span>
+										<h3>PRODUCT NAME</h3>
+										<h5>180.00 &euro;</h5>
+										</div></a>
+										<div class="clearfix"></div>
+								 </li>
+							 </ul>
+						 </div>
+						  <link rel="stylesheet" href="../css/flexslider.css" type="text/css" media="screen" />
+							<script type="text/javascript">
+						 $(window).load(function() {
+							$("#flexiselDemo3").flexisel({
+								visibleItems: 4,
+								animationSpeed: 1000,
+								autoPlay: true,
+								autoPlaySpeed: 3000,    		
+								pauseOnHover: true,
+								enableResponsiveBreakpoints: true,
+								responsiveBreakpoints: { 
+									portrait: { 
+										changePoint:480,
+										visibleItems: 1
+									}, 
+									landscape: { 
+										changePoint:640,
+										visibleItems: 2
+									},
+									tablet: { 
+										changePoint:768,
+										visibleItems: 3
+									}
+								}
+							});
+							
+						 });
+						  </script>
+						<script type="text/javascript" src="../js/jquery.flexisel.js"></script>
+				 </div>
+				 -//tab3---
 			 </div>
 		 </div>
-	 </div>
+	 </div> -->
 	 <div class="container">
 		 <div class="navigation">
 			 <ul>
-				 <li><a href="about.html">ABOUT</a></li>
+				 <li><a href="about.html">关于我们</a></li>
 				 <li><a href="woman.html">STOCKITS</a></li>
 				 <li><a href="contact.html">CONTACT</a></li>
 				 <li><a href="man.html">STORE</a></li>
-				 <li><a href="terms.html">TERMS & CONDITION</a></li>
+				 <li><a href="terms.html">条款 &条件</a></li>
 				 <li><a href="man.html">SHOW TO BUY</a></li>
 				 <li><a href="index.html">SHIPPING</a></li>
 				 <li><a href="man.html">RETURNS</a></li>

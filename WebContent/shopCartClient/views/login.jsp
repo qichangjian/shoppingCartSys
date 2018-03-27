@@ -54,9 +54,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="header-left">
 			 <div class="top-menu">
 				 <ul>
-				 <li><a href="indexShop.jsp">HOME</a></li>
-				  <li><a href="manGategories.do?commodityisman=女&currentPage=1">WOMAN</a></li>
-				 <li><a href="manGategories.do?commodityisman=男&currentPage=1">MAN</a></li>		 
+				 <li><a href="indexShop.jsp">首页</a></li>
+				  <li><a href="manGategories.do?commodityisman=女&currentPage=1">女装</a></li>
+				 <li><a href="manGategories.do?commodityisman=男&currentPage=1">男装</a></li>		 
 				 </ul>
 			 </div>
 		 </div>
@@ -71,10 +71,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			 </div>		 
 			 <div class="signin">
 				  <div class="cart-sec">
-				  <a href="cart.html"><img href="cart.html" src="../images/cart.png" alt=""/>(0)</a></div>
+				  <a href="cart.html"><img href="cart.jsp" src="../images/cart.png" alt=""/>(0)</a></div>
 				  <ul>
-					 <li><a href="registration.jsp">REGISTRATION</a> <span>/<span> &nbsp;</li>
-					 <li><a href="login.jsp"> LOGIN</a></li>
+					 <li><a href="registration.jsp">注册</a> <span>/<span> &nbsp;</li>
+					 <li><a href="login.jsp"> 登录</a></li>
 				 </ul>			 
 			 </div>
 		 </div>
@@ -84,33 +84,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!---->
 <div class="login">
 	 <div class="container">
-		 <h2>Login</h2>
+		 <h2>${userNameisNull}</h2>
+		 <h2>登录</h2>
 		 <div class="col-md-6 log">			 
-				 <p>Welcome, please enter the folling to continue.</p>
-				 <p>If you have previously Login with us, <span>click here</span></p>
+				 <p>欢迎光临，请输入以下继续：</p>
 				 <form method="post" action="doLogin.do">
-					 <h5>User Name:</h5>	
+					 <h5>用&nbsp;户&nbsp;名:</h5>	
 					 <input type="text" value="" name="userName">
-					 <h5>Password:</h5>
+					 <h5>用户密码:</h5>
 					 <input type="password" value="" name="userPassword">					
-					 <input type="submit" value="Login">
-					  <a href="#">Forgot Password ?</a>
+					 <input type="submit" value="登录">
+					  <a href="#">忘记密码?</a>
 				 </form>				 
 		 </div>
 		  <div class="col-md-6 login-right">
-			  	<h3>NEW REGISTRATION</h3>
-				<p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-				<a class="acount-btn" href="registration.jsp">Create an Account</a>
+			  	<h3>新注册</h3>
+				<p>通过创建一个我们商店的帐户，你将能够通过结帐过程更快，存储多个送货地址，查看和跟踪您的订单在您的帐户和更多。.</p>
+				<a class="acount-btn" href="registration.jsp">创建一个新账户</a>
 		 </div>
 		 <div class="clearfix"></div>
 		 
 		 <div class="navigation">
 			 <ul>
-				 <li><a href="about.html">ABOUT</a></li>
+				 <li><a href="about.html">关于我们</a></li>
 				 <li><a href="woman.html">STOCKITS</a></li>
 				 <li><a href="contact.html">CONTACT</a></li>
 				 <li><a href="man.html">STORE</a></li>
-				 <li><a href="terms.html">TERMS & CONDITION</a></li>
+				 <li><a href="terms.html">条款 &条件</a></li>
 				 <li><a href="man.html">SHOW TO BUY</a></li>
 				 <li><a href="404.html">SHIPPING</a></li>
 				 <li><a href="404.html">RETURNS</a></li>

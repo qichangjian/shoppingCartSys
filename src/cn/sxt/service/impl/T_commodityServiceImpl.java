@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import cn.sxt.dao.T_commodityDao;
 import cn.sxt.service.T_commodityService;
 import cn.sxt.vo.T_commodity;
+import cn.sxt.vo.T_commoditypicture;
+import cn.sxt.vo.T_picture;
 @Service("t_commodityService")
 public class T_commodityServiceImpl implements T_commodityService{
 	@Autowired
@@ -52,6 +54,27 @@ public class T_commodityServiceImpl implements T_commodityService{
 		System.out.println("2service select gate:"+t_commodityDao.selectGategCount2(map));
 		return t_commodityDao.selectGategCount(map);
 	}
+
+	@Override
+	public List<T_commoditypicture> selectAllCommoditytest(Map<String, Object> map) {
+		return t_commodityDao.selectAllCommoditytest(map);
+	}
+
+	@Override
+	public List<T_picture> selectAllCommoditypicture(Map<String, Object> map) {
+		return t_commodityDao.selectAllCommoditypicture(map);
+	}
+
+	@Override
+	public List<T_commoditypicture> selectCommoditypBycId(Map<String, Object> map) {
+		return t_commodityDao.selectCommoditypBycId(map);
+	}
+
+	@Override
+	public int updateTcartListnumber(Map<String, Object> map) {
+		return t_commodityDao.updateTcartListnumber(map);
+	}
+
 	
 	
 }
