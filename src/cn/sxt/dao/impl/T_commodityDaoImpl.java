@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import cn.sxt.dao.T_commodityDao;
 import cn.sxt.vo.T_commodity;
+import cn.sxt.vo.T_commodityComment;
 import cn.sxt.vo.T_commoditypicture;
 import cn.sxt.vo.T_picture;
 
@@ -81,6 +82,26 @@ public class T_commodityDaoImpl extends SqlSessionDaoSupport implements T_commod
 	@Override
 	public int updateTcartListnumber(Map<String, Object> map) {
 		return getSqlSession().update("cn.sxt.vo.t_cartList.mapper.updateTcartListnumber", map);
+	}
+
+	@Override
+	public List<T_commodity> selectCommodity(Map<String, Object> map) {
+		return getSqlSession().selectList("cn.sxt.vo.t_commodity.mapper.selectCommodity", map);
+	}
+
+	@Override
+	public int selectCommentCount(Map<String, Object> map) {
+		return getSqlSession().selectOne("cn.sxt.vo.t_commodityComment.mapper.selectCommentCount", map);
+	}
+
+	@Override
+	public List<T_commodityComment> selectCommodityCommentById(Map<String, Object> map) {
+		return getSqlSession().selectList("cn.sxt.vo.t_commodityComment.mapper.selectCommodityCommentById",map);
+	}
+
+	@Override
+	public int addContactUs(Map<String, Object> map) {
+		return getSqlSession().insert("cn.sxt.vo.t_commodityComment.mapper.addContactUs",map);
 	}
 
 

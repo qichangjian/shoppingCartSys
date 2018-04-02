@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.sxt.service.T_commodityService;
 import cn.sxt.vo.T_commodity;
+import cn.sxt.vo.T_commodityComment;
 import cn.sxt.vo.T_commoditypicture;
 import cn.sxt.vo.T_picture;
 
@@ -406,6 +407,7 @@ public class T_commodityController {
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("commodityId", commodityId);
 		List<T_picture> pictureList = t_commodityService.selectAllCommoditypicture(map);
+		
 		//System.out.println("111111111111111111:"+pictureList.size()+pictureList.get(0).getCpURL()+pictureList.get(1).getCpURL());
 		
 		mv.addObject("commodityId",commodityId);
@@ -416,4 +418,77 @@ public class T_commodityController {
 		mv.setViewName("/shopCartClient/views/single.jsp");
 		return mv;
 	}
+	
+	@RequestMapping("/shopCartClient/views/toCommodityComment")
+	public ModelAndView toCommodityComment(HttpServletRequest request,HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		String currentPage1 = request.getParameter("currentPage");//当前页数
+		String commodityId = request.getParameter("commodityId");
+		//定义变量：有关页面数据
+		int pageSize = 10;//没页多少条
+		int GategCount = 0;//总查询条数
+		int pageAll = 0;//一共几页
+		int currentPage = 0;//前台传输过来当前页数（int）
+		currentPage = Integer.parseInt(currentPage1);
+		
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("commodityId", commodityId);
+		GategCount = t_commodityService.selectCommentCount(map);//多少条数据
+		System.out.println("GategCount:"+GategCount);
+		/**一共多少页*/
+		pageAll = (GategCount + pageSize -1 )/pageSize;//计算一共有几页
+		System.out.println(pageAll+":"+currentPage);
+		//判断不能下一页超出范围
+		if(currentPage < 1) {
+			System.out.println("进入小于");
+			currentPage = 1;
+		}
+		if(currentPage > pageAll) {
+			System.out.println("进入大于");
+			currentPage = pageAll;
+		}
+		Map<String,Object> map1 = new HashMap<String,Object>();
+		map1.put("commodityId", commodityId);
+		map1.put("startIndex", (currentPage-1)*pageSize);//多少页
+		map1.put("pageSize", pageSize*currentPage);//每页多少
+		List<T_commodityComment> commodityCommentList = t_commodityService.selectCommodityCommentById(map1);
+		mv.addObject("commodityId", commodityId);
+		mv.addObject("pageAll",pageAll);//当前是第几页
+		mv.addObject("pageNumberX",currentPage);//当前是第几页
+		request.getSession(true).setAttribute("commodityCommentList", commodityCommentList);//前台一定要导入jstl标签库
+		mv.setViewName("/shopCartClient/views/commodityComment.jsp");
+		return mv;
+	}
+	
+	@RequestMapping(value="/shopCartClient/views/addContactUs",produces="text/plain;charset=utf-8")
+	  public ModelAndView addContactUs(HttpServletRequest request,HttpServletResponse response,ModelMap map1) { 
+	    ModelAndView mv = new ModelAndView();
+	    String userId1 = request.getParameter("userId");
+	    String userName = request.getParameter("userName");
+	    String contactusSubject = request.getParameter("contactusSubject");
+	    String contactusContent = request.getParameter("contactusContent");
+	    System.out.println("1前台传输过来的 数据"+contactusSubject);
+	    if(null == userId1 || "" == userId1){
+	      String userNameisNull = "请先登录";
+	      mv.addObject("userNameisNull",userNameisNull);
+	      mv.setViewName("/shopCartClient/views/login.jsp");
+	      return mv;
+	    }else{
+	      int userId = Integer.parseInt(userId1);
+	      Map<String,Object> map = new HashMap<String,Object>();
+	      map.put("userId", userId);
+	      map.put("userName", userName);
+	      map.put("contactusSubject", contactusSubject);
+	      map.put("contactusContent", contactusContent);
+	      int isaddContactUs = t_commodityService.addContactUs(map);
+	      if(isaddContactUs ==1){
+	        mv.addObject("contactusTip", "留言成功");
+	        mv.setViewName("/shopCartClient/views/contactUs.jsp");
+	      }else{
+	        mv.addObject("contactusTip", "留言失败");
+	        mv.setViewName("/shopCartClient/views/contactUs.jsp");
+	      }
+	    }
+	    return mv;
+	  }
 }

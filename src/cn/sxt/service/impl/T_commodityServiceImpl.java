@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import cn.sxt.dao.T_commodityDao;
 import cn.sxt.service.T_commodityService;
 import cn.sxt.vo.T_commodity;
+import cn.sxt.vo.T_commodityComment;
 import cn.sxt.vo.T_commoditypicture;
 import cn.sxt.vo.T_picture;
 @Service("t_commodityService")
@@ -73,6 +74,26 @@ public class T_commodityServiceImpl implements T_commodityService{
 	@Override
 	public int updateTcartListnumber(Map<String, Object> map) {
 		return t_commodityDao.updateTcartListnumber(map);
+	}
+
+	@Override
+	public List<T_commodity> selectCommodity(Map<String, Object> map) {
+		return t_commodityDao.selectCommodity(map);
+	}
+
+	@Override
+	public int selectCommentCount(Map<String, Object> map) {
+		return t_commodityDao.selectCommentCount(map);
+	}
+
+	@Override
+	public List<T_commodityComment> selectCommodityCommentById(Map<String, Object> map) {
+		return t_commodityDao.selectCommodityCommentById(map);
+	}
+
+	@Override
+	public int addContactUs(Map<String, Object> map) {
+		return t_commodityDao.addContactUs(map);
 	}
 
 	

@@ -13,5 +13,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="cn/sxt/vo/t_gategories.mapper.xml"/>		
 		<mapper resource="cn/sxt/vo/t_shopCart.mapper.xml"/>	
 		<mapper resource="cn/sxt/vo/t_cartList.mapper.xml"/>
+		<mapper resource="cn/sxt/vo/t_commodityComment.mapper.xml"/>
+		
 	</mappers> 
 </configuration>

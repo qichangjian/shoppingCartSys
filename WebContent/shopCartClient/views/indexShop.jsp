@@ -779,15 +779,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 <div class="container">
 		 <div class="navigation">
 			 <ul>
-				 <li><a href="about.html">关于我们</a></li>
-				 <li><a href="woman.html">STOCKITS</a></li>
-				 <li><a href="contact.html">CONTACT</a></li>
-				 <li><a href="man.html">STORE</a></li>
-				 <li><a href="terms.html">条款 &条件</a></li>
-				 <li><a href="man.html">SHOW TO BUY</a></li>
-				 <li><a href="index.html">SHIPPING</a></li>
-				 <li><a href="man.html">RETURNS</a></li>
-				 <li><a href="single.html">SIZE CHART</a></li>
+				 <li><a href="about.jsp" style="padding:0 3em;">关于我们</a></li>
+				 <li><a href="href="manGategories.do?commodityisman=女&currentPage=1"" style="padding:0 3em;">女装</a></li>
+				 <li><a href="#" style="padding:0 3em;">首页</a></li>
+				 <li><a href="clause.jsp" style="padding:0 3em;">条款 &条件</a></li> 
+				 <li><a href="contactUs.jsp" style="padding:0 3em;">留言商家</a></li>
+				 <li><a href="manGategories.do?commodityisman=男&currentPage=1" style="padding:0 3em;">男装</a></li>
+				  <li><a href="sizeChart.jsp" style="padding:0 3em;">尺寸图</a></li>
 			 </ul>
 		 </div>
 	 </div>

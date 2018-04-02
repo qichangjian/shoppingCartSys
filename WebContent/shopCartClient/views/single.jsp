@@ -41,7 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 <div class="header-right">
 			 <div class="currency">			 
 				 <a href="#"><i class="c1"></i></a>
-		         <a href="#" style="color: #fff;font-size: 13px;font-weight: 600;text-decoration: none;">${tuserlist.userName}</a>	
+		         <a href="#" style="color: #fff;font-size: 13px;font-weight: 600;text-decoration: none;">${tuserlist.userName}${tuserlist.userId }</a>	
 				 <a href="#"><i class="c4"></i></a>
 			 </div>		 
 			 <div class="signin">
@@ -78,6 +78,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					  <li><img src="../file/${pictureLists.cpURL}" alt="${pictureLists.cpPosition}"></li>
 				    </c:forEach>
 				</ul>
+		   </div>
+		   <div>
+		   	<p><a href="toCommodityComment.do?commodityId=${commodityId}&currentPage=1"><h3>查看商品评论</h3></a></p><p style="color: red;">${commentTip }</p>
+		   	<form method="post" action="addCommodityComment.do?commodityId=${commodityId}&userId=${tuserlist.userId }&userName=${tuserlist.userName}">	
+				 <textarea name="commodityCommentContent" cols="100" rows="2"></textarea>
+				 <input type="submit" value="添加评论">
+			 </form>		
 		   </div>
 	  </div> 
 	<div class="col-md-4 side-bar2">
