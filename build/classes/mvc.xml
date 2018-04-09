@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:jee="http://www.springframework.org/schema/jee"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/jee
@@ -11,25 +10,28 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 	<!-- 用于将对象转换为JSON -->
-	<bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+	<bean id="stringConverter"
+		class="org.springframework.http.converter.StringHttpMessageConverter">
 		<property name="supportedMediaTypes">
 			<list>
 				<value>text/plain;charset=UTF-8</value>
 			</list>
 		</property>
 	</bean>
-	<bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">		
+	<bean id="jsonConverter"
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 	</bean>
-		<!-- 适配器 -->
-	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	<!-- 适配器 -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
 			<list>
-				<ref bean="stringConverter"/>
-				<ref bean="jsonConverter"/>
+				<ref bean="stringConverter" />
+				<ref bean="jsonConverter" />
 			</list>
 		</property>
 	</bean>
-	
+
 	<!-- 配置注解的扫描:扫描cn.sxt.controller下文件 -->
-	<context:component-scan base-package="cn.sxt.controller"/>
+	<context:component-scan base-package="cn.sxt.controller" />
 </beans>

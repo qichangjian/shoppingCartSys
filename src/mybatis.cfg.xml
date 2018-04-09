@@ -3,17 +3,17 @@
 PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
- 	<typeAliases>
-		<package name="cn.sxt.vo"/>
+	<typeAliases>
+		<package name="cn.sxt.vo" />
 	</typeAliases>
 	<mappers>
-		<!-- 所有mapper.xml文件填写位置 -->	
-		<mapper resource="cn/sxt/vo/t_user.mapper.xml"/>
-		<mapper resource="cn/sxt/vo/t_commodity.mapper.xml"/>
-		<mapper resource="cn/sxt/vo/t_gategories.mapper.xml"/>		
-		<mapper resource="cn/sxt/vo/t_shopCart.mapper.xml"/>	
-		<mapper resource="cn/sxt/vo/t_cartList.mapper.xml"/>
-		<mapper resource="cn/sxt/vo/t_commodityComment.mapper.xml"/>
-		
-	</mappers> 
+		<!-- 所有mapper.xml文件填写位置 -->
+		<mapper resource="cn/sxt/vo/t_user.mapper.xml" />
+		<mapper resource="cn/sxt/vo/t_commodity.mapper.xml" />
+		<mapper resource="cn/sxt/vo/t_gategories.mapper.xml" />
+		<mapper resource="cn/sxt/vo/t_shopCart.mapper.xml" />
+		<mapper resource="cn/sxt/vo/t_cartList.mapper.xml" />
+		<mapper resource="cn/sxt/vo/t_commodityComment.mapper.xml" />
+
+	</mappers>
 </configuration>

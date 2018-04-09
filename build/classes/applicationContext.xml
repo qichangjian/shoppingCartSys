@@ -1,88 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:aop="http://www.springframework.org/schema/aop"
-    xmlns:tx="http://www.springframework.org/schema/tx"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd 
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-	
+
 	<!-- 读取属性配置文件 -->
-<!-- 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:db.properties"></property>
-	</bean> -->
+	<!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="location" value="classpath:db.properties"></property> </bean> -->
 	<!-- 配置datasource数据源 -->
-	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${driver}"/>
-		<property name="url" value="${url}"/>
-		<property name="username" value="${username}"/>
-		<property name="password" value="${password}"/>
-	</bean> -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:ORCL"/>
-		<property name="username" value="qichangjian"/>
-		<property name="password" value="274039"/>
-	</bean> 
-	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-              <property name="driverClassName">
-                     <value>oracle.jdbc.driver.OracleDriver</value>
-              </property>
-              <property name="url">
-                     <value>jdbc:oracle:thin:@localhost:1521:orcl</value>
-              </property>
-              <property name="username">
-                     <value>shoppingCart</value>
-              </property>
-              <property name="password">
-                     <value>274039</value>
-              </property>
-              <property name="maxActive">
-                     <value>255</value>
-              </property>
-              <property name="maxIdle">
-                     <value>2</value>
-              </property>
-              <property name="maxWait">
-                     <value>120000</value>
-              </property>
-       </bean> -->
-	<!-- 配置sqlSessionFactory 工厂-->
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="${driver}"/> <property name="url" 
+		value="${url}"/> <property name="username" value="${username}"/> <property 
+		name="password" value="${password}"/> </bean> -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:ORCL" />
+		<property name="username" value="qichangjian" />
+		<property name="password" value="274039" />
+	</bean>
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> 
+		<property name="driverClassName"> <value>oracle.jdbc.driver.OracleDriver</value> 
+		</property> <property name="url"> <value>jdbc:oracle:thin:@localhost:1521:orcl</value> 
+		</property> <property name="username"> <value>shoppingCart</value> </property> 
+		<property name="password"> <value>274039</value> </property> <property name="maxActive"> 
+		<value>255</value> </property> <property name="maxIdle"> <value>2</value> 
+		</property> <property name="maxWait"> <value>120000</value> </property> </bean> -->
+	<!-- 配置sqlSessionFactory 工厂 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis.cfg.xml"></property>
 	</bean>
 	<!-- 配置声明式事务配置 开始 -->
 	<!-- 配置事务管理器 -->
-	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-	    <property name="dataSource" ref="dataSource"/>
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 	<!-- 配置事务通知 -->
 	<tx:advice id="txAdvice" transaction-manager="txManager">
 		<tx:attributes>
 			<!-- 配置哪些方法使用什么样的事务,配置事务的传播特性 -->
-			<tx:method name="save" propagation="REQUIRED"/>
-			<tx:method name="get" read-only="true"/>
-			<tx:method name="*" propagation="REQUIRED"/>
+			<tx:method name="save" propagation="REQUIRED" />
+			<tx:method name="get" read-only="true" />
+			<tx:method name="*" propagation="REQUIRED" />
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:pointcut expression="execution(* cn.sxt.service.impl.*.*(..))" id="pointcut"/>
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut"/>
+		<aop:pointcut expression="execution(* cn.sxt.service.impl.*.*(..))"
+			id="pointcut" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="pointcut" />
 	</aop:config>
 	<!-- 声明式事务配置 结束 -->
-	
+
 	<!-- 配置注解 -->
-	<!-- 自动扫描主键:
-					cn.sxt包下的所有类都会自动扫描
-			自动扫描所配置包下的所有注解:
-			dao-@Repository("userDao")
-			service-@Service("userService")
-			action-@Controller("userAction")
-			属性的注入:
-			@Autowried-->
-	<context:component-scan base-package="cn.sxt"/>
+	<!-- 自动扫描主键: cn.sxt包下的所有类都会自动扫描 自动扫描所配置包下的所有注解: dao-@Repository("userDao") 
+		service-@Service("userService") action-@Controller("userAction") 属性的注入: @Autowried -->
+	<context:component-scan base-package="cn.sxt" />
 </beans>

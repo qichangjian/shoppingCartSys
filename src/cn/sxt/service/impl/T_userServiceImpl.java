@@ -9,11 +9,12 @@ import org.springframework.stereotype.Service;
 import cn.sxt.dao.T_userDao;
 import cn.sxt.service.T_userService;
 import cn.sxt.vo.T_user;
+
 @Service("t_userService")
-public class T_userServiceImpl implements T_userService{
+public class T_userServiceImpl implements T_userService {
 	@Autowired
 	private T_userDao t_userDao;
-	
+
 	@Override
 	public List<T_user> selectTuserByName(Map<String, Object> map) {
 		System.out.println("service");
@@ -27,7 +28,7 @@ public class T_userServiceImpl implements T_userService{
 
 	@Override
 	public int registerTuser(Map<String, Object> map) {
-		System.out.println("service:"+map.size());
+		System.out.println("service:" + map.size());
 		return t_userDao.registerTuser(map);
 	}
 

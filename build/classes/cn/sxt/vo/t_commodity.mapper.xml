@@ -4,98 +4,121 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.sxt.vo.t_commodity.mapper">
 	<!-- 修改重新做一个实体类 -->
-	<select id="selectManGategories" resultMap="commodityGategories" parameterType="Map">
-		select * from t_commodity where commodityisman = #{commodityisman}
+	<select id="selectManGategories" resultMap="commodityGategories"
+		parameterType="Map">
+		select * from t_commodity where commodityisman =
+		#{commodityisman}
 	</select>
 	<resultMap type="T_commodity" id="commodityGategories">
-		<association property="t_gategories" column="gategoriesId" javaType="T_gategories" select="cn.sxt.vo.t_gategories.mapper.selectMGategories">
+		<association property="t_gategories" column="gategoriesId"
+			javaType="T_gategories" select="cn.sxt.vo.t_gategories.mapper.selectMGategories">
 		</association>
 	</resultMap>
-	
+
 	<select id="selectGategCount" resultType="int" parameterType="Map">
-		select count(*) from t_commodity 
+		select count(*) from t_commodity
 		<where>
-		commodityisman = #{commodityisman}
+			commodityisman = #{commodityisman}
+			<if test="gategoriesId != null">
+				and gategoriesId = #{gategoriesId}
+			</if>
 			<if test="low != null">
-  				and commodityPrice > #{low}
-  			</if>
-  			<if test="high != null">
-  				and commodityPrice &lt;= #{high}
-  			</if>
-  			<if test="gategoriesId != null">
-  				and gategoriesId = #{gategoriesId}
-  			</if>
+				and commodityPrice > #{low}
+			</if>
+			<if test="high != null">
+				and commodityPrice &lt;= #{high}
+			</if>
 		</where>
 	</select>
-	<!--   select * from t_commodity where rowid in(select rid from (select rownum rn,rid from(select rowid rid,commodityId from t_commodity) where rownum<=1) where rn>0)  -->
-	<!-- <select id="selectAllCommodity" resultType="T_commodity" parameterType="Map">
-	select * from (select t.*,rownum rownu from t_commodity t 
-        where rownum&lt;=#{pageSize} and commodityisman = #{commodityisman})tt
-        where tt.rownu>#{startIndex}
+	<!-- select * from t_commodity where rowid in(select rid from (select rownum 
+		rn,rid from(select rowid rid,commodityId from t_commodity) where rownum<=1) 
+		where rn>0) -->
+	<!-- <select id="selectAllCommodity" resultType="T_commodity" parameterType="Map"> 
+		select * from (select t.*,rownum rownu from t_commodity t where rownum&lt;=#{pageSize} 
+		and commodityisman = #{commodityisman})tt where tt.rownu>#{startIndex} </select> 
+		<select id="selectGategCount" resultType="int" parameterType="Map"> select 
+		count(*) from t_commodity where commodityisman = #{commodityisman} </select> -->
+	<select id="selectAllCommodity" resultType="T_commodity"
+		parameterType="Map">
+		select * from (select t.*,rownum rownu from t_commodity t
+		where rownum&lt;=#{pageSize} and commodityisman = #{commodityisman})tt
+		where tt.rownu>#{startIndex}
 	</select>
-	
-	<select id="selectGategCount" resultType="int" parameterType="Map">
-		select count(*) from t_commodity where commodityisman = #{commodityisman}
-	</select> -->
-	<select id="selectAllCommodity" resultType="T_commodity" parameterType="Map">
-	select * from (select t.*,rownum rownu from t_commodity t 
-        where rownum&lt;=#{pageSize} and commodityisman = #{commodityisman})tt
-        where tt.rownu>#{startIndex}
+
+	<select id="selectAllCommoditytest" resultType="T_commoditypicture"
+		parameterType="Map">
+		select * from (select cp.cpId,cp.cpurl,cp.cpposition,t.*,rownum rownu
+		from t_commodity t, t_commoditypicture cp
+		where rownum&lt;=#{pageSize} and commodityisman = #{commodityisman} and
+		cp.cpposition ='正面照' and cp.commodityid = t.commodityid
+		<if test="low != null">
+			and commodityPrice > #{low}
+		</if>
+		<if test="high != null">
+			and commodityPrice &lt;= #{high}
+		</if>
+		<if test="gategoriesId != null">
+			and gategoriesId = #{gategoriesId}
+		</if>
+		)tt
+		where tt.rownu>#{startIndex}
 	</select>
-	
-	<select id="selectAllCommoditytest" resultType="T_commoditypicture" parameterType="Map">
-        select * from (select cp.cpId,cp.cpurl,cp.cpposition,t.*,rownum rownu from t_commodity t, t_commoditypicture cp
-        where rownum&lt;=#{pageSize} and commodityisman = #{commodityisman} and cp.cpposition ='正面照' and cp.commodityid = t.commodityid
-       	    <if test="low != null">
-  				and commodityPrice > #{low}
-  			</if>
-  			<if test="high != null">
-  				and commodityPrice &lt;= #{high}
-  			</if>
-  			<if test="gategoriesId != null">
-  				and gategoriesId = #{gategoriesId}
-  			</if>
-        )tt
-        where tt.rownu>#{startIndex}
+
+	<select id="selectCommoditypBycId" resultType="T_commoditypicture"
+		parameterType="Map">
+		<!-- select cp.cpId,cp.cpurl,cp.cpposition,t.* from t_commodity t, t_commoditypicture 
+			cp where cp.cpposition ='正面照' and cp.commodityid = t.commodityid and cp.commodityid 
+			= #{commodityId} -->
+		select
+		cp.cpId,cp.cpurl,cp.cpposition,t.commodityid,t.commodityname,t.commodityprice,t.commodityisman,t.commodityisshelves,cl.commoditysize,cl.cartListnumber,cl.cartListId
+		from t_commodity t, t_commoditypicture cp ,t_cartList cl
+		where cp.cpposition ='正面照' and cp.commodityid = t.commodityid and
+		cl.commodityid = cp.commodityid and cp.commodityid = #{commodityId}
 	</select>
-	
-	<select id="selectCommoditypBycId" resultType="T_commoditypicture" parameterType="Map">
-		<!-- select cp.cpId,cp.cpurl,cp.cpposition,t.*  from t_commodity t, t_commoditypicture cp
-       	 where cp.cpposition ='正面照' and  cp.commodityid = t.commodityid and cp.commodityid =  #{commodityId} -->
-       	 select cp.cpId,cp.cpurl,cp.cpposition,t.commodityid,t.commodityname,t.commodityprice,t.commodityisman,t.commodityisshelves,cl.commoditysize,cl.cartListnumber,cl.cartListId  from t_commodity t, t_commoditypicture cp ,t_cartList cl
-       	 where cp.cpposition ='正面照' and  cp.commodityid = t.commodityid and cl.commodityid = cp.commodityid and cp.commodityid = #{commodityId}
+
+	<select id="selectAllCommoditypicture" resultType="T_picture"
+		parameterType="Map">
+		select * from T_commoditypicture where commodityId = #{commodityId}
 	</select>
-	
-	<select id="selectAllCommoditypicture" resultType="T_picture" parameterType="Map">
-        select * from T_commoditypicture where commodityId = #{commodityId}
+	<select id="selectCommodity" resultType="T_commodity"
+		parameterType="Map">
+		select * from t_commodity where commodityId = #{commodityId}
 	</select>
-	<select id="selectCommodity" resultType="T_commodity" parameterType="Map">
-        select * from t_commodity where commodityId = #{commodityId}
+
+	<select id="selectAllCommodity2" resultType="T_commodity"
+		parameterType="Map">
+		select * from (select t.*,rownum rownu from t_commodity t
+		where rownum&lt;=#{pageSize} and commodityisman = #{commodityisman} and
+		commodityPrice > #{low} and commodityPrice &lt;= #{high})tt
+		where tt.rownu>#{startIndex}
 	</select>
-	
-	<select id="selectAllCommodity2" resultType="T_commodity" parameterType="Map">
-	select * from (select t.*,rownum rownu from t_commodity t 
-        where rownum&lt;=#{pageSize} and commodityisman = #{commodityisman} and commodityPrice > #{low} and commodityPrice &lt;= #{high})tt
-        where tt.rownu>#{startIndex}
+	<select id="selectAllCommodity3" resultType="T_commodity"
+		parameterType="Map">
+		select * from (select t.*,rownum rownu from t_commodity t,t_gategories g
+		where rownum&lt;=#{pageSize} and commodityisman = #{commodityisman}
+		and commodityPrice > #{low} and commodityPrice &lt;= #{high} and
+		g.gategoriesName=#{gategoriesName} and t.gategoriesid=g.gategoriesid
+		)tt
+		where tt.rownu>#{startIndex}
 	</select>
-	<select id="selectAllCommodity3" resultType="T_commodity" parameterType="Map">
-	select * from (select t.*,rownum rownu from t_commodity t,t_gategories g
-        where rownum&lt;=#{pageSize} and commodityisman = #{commodityisman} and commodityPrice > #{low} and commodityPrice &lt;= #{high} and g.gategoriesName=#{gategoriesName} and t.gategoriesid=g.gategoriesid )tt
-        where tt.rownu>#{startIndex}
+	<select id="selectAllCommodity4" resultType="T_commodity"
+		parameterType="Map">
+		select * from (select t.*,rownum rownu from t_commodity t,t_gategories g
+		where rownum&lt;=#{pageSize} and commodityisman = #{commodityisman}
+		and g.gategoriesName=#{gategoriesName} and
+		t.gategoriesid=g.gategoriesid)tt
+		where tt.rownu>#{startIndex}
 	</select>
-	<select id="selectAllCommodity4" resultType="T_commodity" parameterType="Map">
-	select * from (select t.*,rownum rownu from t_commodity t,t_gategories g
-        where rownum&lt;=#{pageSize} and commodityisman = #{commodityisman} and g.gategoriesName=#{gategoriesName} and t.gategoriesid=g.gategoriesid)tt
-        where tt.rownu>#{startIndex}
-	</select>
-	
-	
+
+
 	<select id="selectGategCount1" resultType="int" parameterType="Map">
-		select count(*) from t_commodity where commodityisman = #{commodityisman}
+		select count(*) from t_commodity where commodityisman =
+		#{commodityisman}
 	</select>
 	<select id="selectGategCount2" resultType="int" parameterType="Map">
-		select count(*) from t_commodity 
-		where commodityisman = #{commodityisman} and commodityPrice > #{low} and commodityPrice &lt;= #{high}
+		select count(*) from t_commodity
+		where commodityisman = #{commodityisman} and commodityPrice > #{low} and
+		commodityPrice &lt;= #{high}
 
 	</select>
 </mapper>
