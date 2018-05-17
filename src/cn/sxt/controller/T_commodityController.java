@@ -279,6 +279,9 @@ public class T_commodityController {
 		mv.addObject("pageAll", pageAll);// 当前是第几页
 		mv.addObject("pageNumberX", currentPage);// 当前是第几页
 		request.getSession(true).setAttribute("commodityCommentList", commodityCommentList);// 前台一定要导入jstl标签库
+		if(commodityCommentList.size() == 0){
+			mv.addObject("commodityCommentListTip", "当前商品没有评论");// 当前是第几页
+		}
 		mv.setViewName("/shopCartClient/views/commodityComment.jsp");
 		return mv;
 	}

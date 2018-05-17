@@ -36,24 +36,17 @@ public class T_userController {
 	@RequestMapping("/shopCartClient/views/doLogin")
 	public ModelAndView doLogin(HttpServletRequest request, HttpServletResponse response, ModelMap map1) {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("进入doLogin");
 		String userName = request.getParameter("userName");
 		String userPassword = request.getParameter("userPassword");
-		System.out.println("T_controller：" + userName + ",userPassword:" + userPassword);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userName", userName);
 		map.put("userPassword", userPassword);
 		List<T_user> tuserlist = t_userService.selectTuserByName(map);
-
-		// System.out.println("size="+tuserlist.size()+"id"+ tuserlist.get(0));
-		// 调用查询页面
-		// map1.addAttribute("list",tuserService.list());
 		if (null == tuserlist || tuserlist.size() == 0) {
-			mv.addObject("loginTip", "没有改用户");
+			mv.addObject("loginTip", "没有该用户");
 			mv.setViewName("forward:login.jsp");
 		} else {
 			request.getSession().setAttribute("tuserlist", tuserlist.get(0));
-			System.out.println("跳转前边");
 			mv.setViewName("forward:indexShop.jsp");
 		}
 		return mv;

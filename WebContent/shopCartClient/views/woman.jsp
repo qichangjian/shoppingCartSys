@@ -89,24 +89,10 @@ ul li {
 		<div class="container">
 			<div class="col-md-9 fashions">
 				<div class="title">
-					<h3>TOPS - TITLE.${gategoriesN}</h3>
+					<h3>TOPS - TITLE.${gategoriesN}${gategoriesI}</h3>
 				</div>
 				<div class="fashion-section" style="min-height: 400px;">
 					<div class="fashion-grid1">
-						<%-- <c:forEach items="${commodityList}" var="commodity">
-						 <div class="col-md-4 fashion-grid" style="margin-top: 2em;margin-bottom: 2em;">
-							 <a href="single.html"><img src="../images/${commodity.commodityURL}.jpg" alt=""/>
-								 <div class="product">
-									 <h3> ${commodity.commodityName} ${commodity.commodityId}</h3>
-									 <p><span></span> ${commodity.commodityPrice} &euro;</p>								 
-								 </div>							 
-							 </a>
-							 <div class="fashion-view"><span></span>
-									<div class="clearfix"></div>
-									 <h4><a href="toSinglejsp.do?commodityId=${commodity.commodityId}&commodityPrice=${commodity.commodityPrice}&commodityName=${commodity.commodityName}&commodityURL=${commodity.commodityURL}">Quick View</a></h4>
-							 </div>
-						 </div>
-					 </c:forEach> --%>
 						<c:forEach items="${commoditypictureList}" var="commoditypicture">
 							<div class="col-md-4 fashion-grid"
 								style="margin-top: 2em; margin-bottom: 2em;">
@@ -124,29 +110,13 @@ ul li {
 									<div class="clearfix"></div>
 									<h4>
 										<a
-											href="toSinglejsp.do?commodityId=${commodity.commodityId}&commodityPrice=${commodity.commodityPrice}&commodityName=${commodity.commodityName}&commodityURL=${commodity.commodityURL}">Quick
+											href="toSinglejsp.do?commodityId=${commoditypicture.commodityId}&commodityPrice=${commoditypicture.commodityPrice}&commodityName=${commoditypicture.commodityName}&cpURL=${commoditypicture.cpURL}">Quick
 											View</a>
 									</h4>
 								</div>
 							</div>
 						</c:forEach>
 						<div class="clearfix"></div>
-						<%-- 					 <div style="padding-bottom: 60px;">
-					 <ul class="am-pagination am-fr">
-							<li class="am-disabled" style="float:right;margin-left: 20px;">当前是第 ${pageNumberX } 页</li>
-							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=1&low=${low}&high=${high}">首页</a></li>
-							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageNumberX-1 }&low=${low}&high=${high}">上一页</a></li>
-							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageNumberX+1 }&low=${low}&high=${high}">下一页</a></li>
-							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageAll}&low=${low}&high=${high}">尾页</a></li>
-							<li style="float:right;margin-left: 20px;">总页数： ${pageAll} 页</li> 
-							<li class="am-disabled" style="float:right;margin-left: 20px;">当前是第 ${pageNumberX } 页</li>
-							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=1&low=${low}&high=${high}&gategoriesName=${gategoriesN}">首页</a></li>
-							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageNumberX-1 }&low=${low}&high=${high}&gategoriesName=${gategoriesN}">上一页</a></li>
-							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageNumberX+1 }&low=${low}&high=${high}&gategoriesName=${gategoriesN}">下一页</a></li>
-							<li style="float:right;margin-left: 20px;"><a class="sel_btn" href="manGategories.do?commodityisman=${commodityisman}&currentPage=${pageAll}&low=${low}&high=${high}&gategoriesName=${gategoriesN}">尾页</a></li>
-							<li style="float:right;margin-left: 20px;">总页数： ${pageAll} 页</li>
-						</ul>
-					</div> --%>
 
 					</div>
 				</div>
@@ -181,7 +151,7 @@ ul li {
 					<div class="pricing">
 						<h4>按价格搜索</h4>
 						<form
-							action="manGategories.do?commodityisman=女&currentPage=1&gategoriesName=${gategoriesN}"
+							action="manGategories.do?commodityisman=女&currentPage=1&gategoriesName=${gategoriesN}&gategoriesId=${gategoriesI}"
 							method="post">
 							<input type="text" placeholder="最低价" required name="low"
 								value="${low}" /> <input type="text" placeholder="最高价" required
